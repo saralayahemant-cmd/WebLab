@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+    body
+    {
+      font-family: Arial;
+      background-color:lightyellow;
+    }
+
+    #calculatorBox
+    {
+      width: 260px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color:lightblue;
+      border: 1px solid red;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    input, select, button
+    {
+      width: 90%;
+      padding: 8px;
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+	<div id="calculatorBox">
+		<h2>Calculator</h2>
+		<input type="number" id="firstNumber"></input>
+		<input type="number" id="secondNumber"></input>
+		<select id="operator">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		<button onclick="calculate()">Calculate</button>
+		<h3 id="resultText"> Ans:</h3>
+	</div>
+
+	<script>
+		function calculate(){
+			var firstNumber=parseFloat(document.getElementById("firstNumber").value);
+			var secondNumber=parseFloat(document.getElementById("secondNumber").value);
+			var result;
+			var operator=document.getElementById("operator").value;
+			if(isNaN(firstNumber) || isNaN(secondNumber)){
+				document.getElementById("resultText").innerText=" Please enter a valid number";
+				return;
+			}
+			if (operator==="+") {
+				result=firstNumber+secondNumber;
+			}
+			if(operator==="-"){
+				result=firstNumber-secondNumber;
+			}
+			if(operator==="*"){
+				result=firstNumber*secondNumber;
+			}
+			if(operator==="/"){
+				if(secondNumber===0){
+					document.getElementById("resultText").innerText="Cannot divide by 0";
+					return
+				}
+				else{
+					result=firstNumber/secondNumber;
+				}
+			}
+			document.getElementById("resultText").innerText=result;
+		}
+	</script>
+</body>
+</html>
